@@ -1,3 +1,4 @@
+import sys
 import tkinter as tk
 from tkinter import messagebox
 from creation import bin_dict_maker
@@ -112,7 +113,12 @@ def done(data, opt_data, file, size):  # the func for ok button
 
 if __name__ == '__main__':
     root = tk.Tk()
-    root.iconbitmap('creation_gui_icon.ico')
+
+    if (sys.platform.startswith('win')):
+        root.iconbitmap('..\\assets\\creation_gui_icon.ico')
+    else:
+        logo = tk.PhotoImage(file='../assets/creation_gui_icon.gif')
+        root.call('wm', 'iconphoto', root._w, logo)
 
     program = Creation(root)
     program.grid()
